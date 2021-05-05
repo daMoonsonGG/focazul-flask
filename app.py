@@ -1,13 +1,17 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
 cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 from patrocinadores import patrocinadores
 from users import users
 from logged_users import logged_users
+
+@app.route("/")
+@cross_origin()
 
 @app.route("/ping")
 def ping():
@@ -41,10 +45,9 @@ def loginUser():
 def checkUserStatus(logged_user__id):
     logged_usersFound = [logged_user for logged_user in logged_users if logged_user["_id"] == logged_user__id]
     if (len (logged_usersFound) > 0):
-        response = jsonify({
+        return jsonify({
             "message": "Usuario conectado", "user": logged_usersFound[0]
         })
-        return response
     return jsonify({
         "message": "Usuario no conectado"
     })
@@ -63,6 +66,7 @@ def logoutUser(logged_user__id):
     })
 
 @app.route("/patrocinadores")
+
 def getPatrocinadores():
     response = jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
     response.headers.add("Access-Control-Allow-Origin", "*")
@@ -72,7 +76,7 @@ def getPatrocinadores():
 def getPatrocinador(patrocinador__id):
     patrocinadoresFound = [patrocinador for patrocinador in patrocinadores if patrocinador["_id"] == patrocinador__id]
     if (len(patrocinadoresFound) > 0):
-        return jsonify({"patrocinador": patrocinadoresFound[0]})
+        return jsonify({"patrocinador": patrocinadoresFound[0]})  
     return jsonify({"message": "Patrocinador no existente"})
 
 @app.route("/patrocinadores", methods=["POST"])
