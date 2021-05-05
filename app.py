@@ -75,7 +75,7 @@ def getPatrocinador(patrocinador__id):
     patrocinadoresFound = [patrocinador for patrocinador in patrocinadores if patrocinador["_id"] == patrocinador__id]
     if (len(patrocinadoresFound) > 0):
         return jsonify({"patrocinador": patrocinadoresFound[0]})  
-    return jsonify({"message": "Patrocinador no existente"})
+    return jsonify({"message": "Patrocinador non existente"})
 
 @app.route("/patrocinadores", methods=["POST"])
 def addPatrocinador():
