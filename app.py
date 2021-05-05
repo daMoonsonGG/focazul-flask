@@ -1,10 +1,7 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
-CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
 from patrocinadores import patrocinadores
 from users import users
@@ -26,7 +23,7 @@ def getUser(user__id):
     return jsonify({"message": "Usuario no existente"})
 
 @app.route("/users/logged-users", methods=["POST"])
-@cross_origin()
+
 def loginUser():
     new_loggedUser = {
         "_id": len(logged_users),
@@ -38,7 +35,7 @@ def loginUser():
     return jsonify({"message": "Usuario conectado", "Usuarios": logged_users})
 
 @app.route("/users/logged-users/<int:logged_user__id>")
-@cross_origin()
+
 def checkUserStatus(logged_user__id):
     logged_usersFound = [logged_user for logged_user in logged_users if logged_user["_id"] == logged_user__id]
     if (len (logged_usersFound) > 0):
@@ -50,7 +47,7 @@ def checkUserStatus(logged_user__id):
     })
 
 @app.route("/users/logged-users/<int:logged_user__id>", methods=["DELETE"])
-@cross_origin()
+
 def logoutUser(logged_user__id):
     usersFound = [logged_user for logged_user in logged_users if logged_user["_id"] == logged_user__id]
     if (len(usersFound) > 0):
@@ -63,7 +60,7 @@ def logoutUser(logged_user__id):
     })
 
 @app.route("/patrocinadores")
-@cross_origin()
+
 def getPatrocinadores():
     return jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
 
@@ -100,7 +97,7 @@ def updatePatrocinador(patrocinador__id):
     })
 
 @app.route("/patrocinadores/<int:patrocinador__id>", methods=["DELETE"])
-@cross_origin()
+
 def deletePatrocinador(patrocinador__id):
     patrocinadoresFound = [patrocinador for patrocinador in patrocinadores if patrocinador["_id"] == patrocinador__id]
     if (len(patrocinadoresFound) > 0):
