@@ -14,7 +14,7 @@ from logged_users import logged_users
 @cross_origin()
 def helloWorld():
   return "Hello, cross-origin-world!"
-  
+
 @app.route("/ping")
 def ping():
     return jsonify({"message": "Pong"})
@@ -31,7 +31,7 @@ def getUser(user__id):
     return jsonify({"message": "Usuario no existente"})
 
 @app.route("/users/logged-users", methods=["POST"])
-
+@cross_origin()
 def loginUser():
     new_loggedUser = {
         "_id": len(logged_users),
@@ -54,7 +54,7 @@ def checkUserStatus(logged_user__id):
     })
 
 @app.route("/users/logged-users/<int:logged_user__id>", methods=["DELETE"])
-
+@cross_origin()
 def logoutUser(logged_user__id):
     usersFound = [logged_user for logged_user in logged_users if logged_user["_id"] == logged_user__id]
     if (len(usersFound) > 0):
@@ -67,7 +67,7 @@ def logoutUser(logged_user__id):
     })
 
 @app.route("/patrocinadores")
-
+@cross_origin()
 def getPatrocinadores():
     response = jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
     response.headers.add("Access-Control-Allow-Origin", "*")
@@ -106,7 +106,7 @@ def updatePatrocinador(patrocinador__id):
     })
 
 @app.route("/patrocinadores/<int:patrocinador__id>", methods=["DELETE"])
-
+@cross_origin()
 def deletePatrocinador(patrocinador__id):
     patrocinadoresFound = [patrocinador for patrocinador in patrocinadores if patrocinador["_id"] == patrocinador__id]
     if (len(patrocinadoresFound) > 0):
