@@ -9,15 +9,6 @@ from patrocinadores import patrocinadores
 from users import users
 from logged_users import logged_users
 
-@app.route("/", methods=["GET"])
-def get_example():
-    """GET in server"""
-    response = jsonify(message="Simple server is running")
-
-    # Enable Access-Control-Allow-Origin
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
-
 @app.route("/ping")
 def ping():
     return jsonify({"message": "Pong"})
@@ -71,7 +62,6 @@ def logoutUser(logged_user__id):
     })
 
 @app.route("/patrocinadores")
-
 def getPatrocinadores():
     response = jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
     response.headers.add("Access-Control-Allow-Origin", "*")
