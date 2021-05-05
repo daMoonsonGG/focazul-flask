@@ -1,14 +1,12 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 
-
-app = Flask(__name__)
-cors = CORS(app)
-CORS(app, resources={r'/*': {"origins": "*"}}, headers="Content-Type")
-
 from patrocinadores import patrocinadores
 from users import users
 from logged_users import logged_users
+
+app = Flask(__name__)
+CORS(app)
 
 @app.route("/ping")
 def ping():
@@ -61,16 +59,14 @@ def logoutUser(logged_user__id):
 
 @app.route("/patrocinadores")
 def getPatrocinadores():
-    response = jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
+    return jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
 
 @app.route("/patrocinadores/<int:patrocinador__id>")
 def getPatrocinador(patrocinador__id):
     patrocinadoresFound = [patrocinador for patrocinador in patrocinadores if patrocinador["_id"] == patrocinador__id]
     if (len(patrocinadoresFound) > 0):
         return jsonify({"patrocinador": patrocinadoresFound[0]})  
-    return jsonify({"message": "Patrocinador non existente"})
+    return jsonify({"message": "Patrocinador no existente"})
 
 @app.route("/patrocinadores", methods=["POST"])
 def addPatrocinador():
