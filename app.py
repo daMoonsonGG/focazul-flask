@@ -64,7 +64,9 @@ def logoutUser(logged_user__id):
 
 @app.route("/patrocinadores")
 def getPatrocinadores():
-    return jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
+    response = jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 @app.route("/patrocinadores/<int:patrocinador__id>")
 def getPatrocinador(patrocinador__id):
