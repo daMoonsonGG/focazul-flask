@@ -6,7 +6,8 @@ from users import users
 from logged_users import logged_users
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/ping")
 def ping():
