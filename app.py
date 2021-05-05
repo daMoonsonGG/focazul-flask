@@ -105,10 +105,12 @@ def updatePatrocinador(patrocinador__id):
 def deletePatrocinador(patrocinador__id):
     patrocinadoresFound = [patrocinador for patrocinador in patrocinadores if patrocinador["_id"] == patrocinador__id]
     if (len(patrocinadoresFound) > 0):
-        patrocinadores.remove(patrocinadoresFound[0])
-        return jsonify({
+        response = jsonify({
             "message": "Patrocinador eliminado", "patrocinadores": patrocinadores
         }) 
+        patrocinadores.remove(patrocinadoresFound[0])
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
     return jsonify({
         "message": "Patrocinador no encontrado"
     })
