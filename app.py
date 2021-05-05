@@ -10,6 +10,11 @@ from patrocinadores import patrocinadores
 from users import users
 from logged_users import logged_users
 
+@app.route("/")
+@cross_origin()
+def helloWorld():
+  return "Hello, cross-origin-world!"
+  
 @app.route("/ping")
 def ping():
     return jsonify({"message": "Pong"})
@@ -38,7 +43,6 @@ def loginUser():
     return jsonify({"message": "Usuario conectado", "Usuarios": logged_users})
 
 @app.route("/users/logged-users/<int:logged_user__id>")
-@cross_origin()
 def checkUserStatus(logged_user__id):
     logged_usersFound = [logged_user for logged_user in logged_users if logged_user["_id"] == logged_user__id]
     if (len (logged_usersFound) > 0):
