@@ -113,9 +113,11 @@ def deletePatrocinador(patrocinador__id):
         patrocinadores.remove(patrocinadoresFound[0])
         response.headers.add("Access-Control-Allow-Origin", "*")
         return response
-    return jsonify({
+    response = jsonify({
         "message": "Patrocinador no encontrado"
     })
-
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
+    
 if __name__ == "__main__":
     app.run(debug=True, port=4000)
