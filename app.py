@@ -3,6 +3,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 from patrocinadores import patrocinadores
 from users import users
