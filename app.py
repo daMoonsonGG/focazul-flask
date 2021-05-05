@@ -11,7 +11,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/ping")
 def ping():
-    return jsonify({"message": "Pong"})
+    return jsonify({"message": "Pon"})
 
 @app.route("/users")
 def getUsers():
