@@ -4,15 +4,11 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 cors = CORS(app)
-CORS(app, resources=r'/*', headers='Content-Type')
+CORS(app, resources={r'/*': {"origins": "*"}}, headers="Content-Type")
 
 from patrocinadores import patrocinadores
 from users import users
 from logged_users import logged_users
-
-@app.route("/")
-def helloWorld():
-  return "Hello, cross-origin-world!"
 
 @app.route("/ping")
 def ping():
