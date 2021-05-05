@@ -1,14 +1,18 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+cors = CORS(app)
 
 from patrocinadores import patrocinadores
 from users import users
 from logged_users import logged_users
 
 @app.route("/ping")
+
 def ping():
+    response.headers.add("Access-Control-Allow-Origin", "*")
     return jsonify({"message": "Pong"})
 
 @app.route("/users")
