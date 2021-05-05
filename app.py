@@ -10,9 +10,7 @@ from users import users
 from logged_users import logged_users
 
 @app.route("/ping")
-
 def ping():
-    response.headers.add("Access-Control-Allow-Origin", "*")
     return jsonify({"message": "Pong"})
 
 @app.route("/users")
@@ -66,7 +64,9 @@ def logoutUser(logged_user__id):
 @app.route("/patrocinadores")
 
 def getPatrocinadores():
-    return jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
+    response = jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 @app.route("/patrocinadores/<int:patrocinador__id>")
 def getPatrocinador(patrocinador__id):
