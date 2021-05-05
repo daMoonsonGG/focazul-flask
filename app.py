@@ -41,9 +41,10 @@ def loginUser():
 def checkUserStatus(logged_user__id):
     logged_usersFound = [logged_user for logged_user in logged_users if logged_user["_id"] == logged_user__id]
     if (len (logged_usersFound) > 0):
-        return jsonify({
+        response = jsonify({
             "message": "Usuario conectado", "user": logged_usersFound[0]
         })
+        return response
     return jsonify({
         "message": "Usuario no conectado"
     })
@@ -63,15 +64,13 @@ def logoutUser(logged_user__id):
 
 @app.route("/patrocinadores")
 def getPatrocinadores():
-    response = jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
+    return jsonify({"patrocinadores": patrocinadores, "message": "Lista de patrocinadores"})
 
 @app.route("/patrocinadores/<int:patrocinador__id>")
 def getPatrocinador(patrocinador__id):
     patrocinadoresFound = [patrocinador for patrocinador in patrocinadores if patrocinador["_id"] == patrocinador__id]
     if (len(patrocinadoresFound) > 0):
-        return jsonify({"patrocinador": patrocinadoresFound[0]})  
+        return jsonify({"patrocinador": patrocinadoresFound[0]})
     return jsonify({"message": "Patrocinador no existente"})
 
 @app.route("/patrocinadores", methods=["POST"])
