@@ -54,7 +54,7 @@ def logoutUser(logged_user__id):
             "message": "Usuario desconectado"
         }) 
     return jsonify({
-        "message": "Patrocinador no encontrado"
+        "message": "Usuario no encontrado"
     })
 
 @app.route("/patrocinadores")
