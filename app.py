@@ -4,7 +4,7 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 cors = CORS(app)
-CORS(app, resources=r'/patrocinadores', headers='Content-Type')
+CORS(app, resources=r'/*', headers='Content-Type')
 
 from patrocinadores import patrocinadores
 from users import users
