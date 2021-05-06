@@ -74,30 +74,30 @@ def getPatrocinador(patrocinador__id):
         return jsonify({"patrocinador": patrocinadoresFound[0]})  
     return jsonify({"message": "Patrocinador no existente"})
 
-@app.route("/patrocinadores", methods=["POST"])
-def addPatrocinador():
-    new_patrocinador = {
-        "_id": len(patrocinadores),
-        "name": request.json["name"],
-        "href": request.json["href"],
-        "img_src": request.json["img_src"],
-    }
-    patrocinadores.append(new_patrocinador)
-    return jsonify({"message": "Patrocinador agregado", "patrocinadores": patrocinadores})
+# @app.route("/patrocinadores", methods=["POST"])
+# def addPatrocinador():
+#     new_patrocinador = {
+#         "_id": len(patrocinadores),
+#         "name": request.json["name"],
+#         "href": request.json["href"],
+#         "img_src": request.json["img_src"],
+#     }
+#     patrocinadores.append(new_patrocinador)
+#     return jsonify({"message": "Patrocinador agregado", "patrocinadores": patrocinadores})
 
-@app.route("/patrocinadores/<int:patrocinador__id>", methods=["PUT"])
-def updatePatrocinador(patrocinador__id):
-    patrocinadoresFound = [patrocinador for patrocinador in patrocinadores if patrocinador["_id"] == patrocinador__id]
-    if (len(patrocinadoresFound) > 0):
-        patrocinadoresFound[0]["name"] = request.json["name"]
-        patrocinadoresFound[0]["href"] = request.json["href"]
-        patrocinadoresFound[0]["img_src"] = request.json["img_src"]
-        return jsonify({
-            "message": "Patrocinador actualizado", "patrocinadores": patrocinadores
-        })
-    return jsonify({
-        "message": "Patrocinador no encontrado"
-    })
+# @app.route("/patrocinadores/<int:patrocinador__id>", methods=["PUT"])
+# def updatePatrocinador(patrocinador__id):
+#     patrocinadoresFound = [patrocinador for patrocinador in patrocinadores if patrocinador["_id"] == patrocinador__id]
+#     if (len(patrocinadoresFound) > 0):
+#         patrocinadoresFound[0]["name"] = request.json["name"]
+#         patrocinadoresFound[0]["href"] = request.json["href"]
+#         patrocinadoresFound[0]["img_src"] = request.json["img_src"]
+#         return jsonify({
+#             "message": "Patrocinador actualizado", "patrocinadores": patrocinadores
+#         })
+#     return jsonify({
+#         "message": "Patrocinador no encontrado"
+#     })
 
 @app.route("/patrocinadores/<int:patrocinador__id>", methods=["DELETE"])
 def deletePatrocinador(patrocinador__id):
