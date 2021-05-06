@@ -16,7 +16,7 @@ cors = CORS(app, resources={
 
 @app.route("/ping")
 def ping():
-    return jsonify({"message": "Pon"})
+    return jsonify({"message": "Pong"})
 
 @app.route("/users")
 def getUsers():
