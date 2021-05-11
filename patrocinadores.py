@@ -1,5 +1,5 @@
 patrocinadores = [
-    {"_id": 0, "name": "ana", "href": "https://www.google.com/", "img_src": "https://i.imgur.com/1h1Snmk.jpg"},
+    {"_id": 0, "name": "Ana", "href": "https://www.google.com/", "img_src": "https://i.imgur.com/1h1Snmk.jpg"},
     {"_id": 1, "name": "asesoria", "href": "https://vypgestion.es/", "img_src": "https://i.imgur.com/fAaVaQH.png"},
     {"_id": 2, "name": "ana", "href": "https://www.google.com/", "img_src": "https://i.imgur.com/1h1Snmk.jpg"},
     {"_id": 3, "name": "asesoria", "href": "https://vypgestion.es/", "img_src": "https://i.imgur.com/fAaVaQH.png"},
